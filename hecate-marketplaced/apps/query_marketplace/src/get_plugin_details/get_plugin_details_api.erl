@@ -56,7 +56,5 @@ fetch_license(PluginId) ->
         {error, _} -> null
     end.
 
-row_to_map(Columns, Row) ->
-    maps:from_list(
-        lists:zip(Columns, tuple_to_list(Row))
-    ).
+row_to_map(Columns, Row) when is_list(Row) ->
+    maps:from_list(lists:zip(Columns, Row)).
