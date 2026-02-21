@@ -8,7 +8,7 @@
 -export([start_link/0, execute/1, execute/2, query/1, query/2]).
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2]).
 
--record(state, {db :: reference()}).
+-record(state, {db :: esqlite3:esqlite3()}).
 
 -spec start_link() -> {ok, pid()} | {error, term()}.
 start_link() ->
@@ -86,11 +86,10 @@ terminate(_Reason, #state{db = Db}) ->
 step_until_done(Stmt) ->
     case esqlite3:step(Stmt) of
         '$done' -> ok;
-        {row, _} -> step_until_done(Stmt);
-        ok -> ok;
         {error, Code} ->
             logger:error("[query_marketplace_store] SQLite step error: ~p", [Code]),
-            {error, Code}
+            {error, Code};
+        _ -> step_until_done(Stmt)
     end.
 
 create_tables(Db) ->
