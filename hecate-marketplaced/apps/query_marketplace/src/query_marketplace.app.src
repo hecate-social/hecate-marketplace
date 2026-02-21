@@ -1,0 +1,18 @@
+{application, query_marketplace, [
+    {description, "Marketplace query service (read models)"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {mod, {query_marketplace_app, []}},
+    {applications, [
+        kernel,
+        stdlib,
+        esqlite,
+        evoq,
+        hecate_marketplaced,
+        guide_plugin_lifecycle
+    ]},
+    {env, []},
+    {modules, []},
+    {licenses, ["Apache-2.0"]},
+    {links, [{"GitHub", "https://github.com/hecate-social/hecate-marketplace"}]}
+]}.

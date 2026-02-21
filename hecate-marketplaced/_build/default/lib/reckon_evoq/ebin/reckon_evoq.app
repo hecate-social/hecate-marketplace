@@ -1,0 +1,10 @@
+{application,reckon_evoq,
+             [{description,"Adapter for connecting evoq to reckon-db via reckon-gater"},
+              {vsn,"1.1.4"},
+              {registered,[]},
+              {applications,[kernel,stdlib,evoq,reckon_gater,telemetry]},
+              {env,[]},
+              {modules,[reckon_evoq_adapter]},
+              {licenses,["Apache-2.0"]},
+              {links,[{"GitHub",
+                       "https://github.com/reckon-db-org/reckon-evoq"}]}]}.
